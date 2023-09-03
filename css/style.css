@@ -1,0 +1,11 @@
+* {
+    background: #222222;
+    color: #eee;
+    font-family: Arial, monospace;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+

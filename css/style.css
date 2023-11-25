@@ -65,15 +65,21 @@
 .nav-btn {
     background-image: linear-gradient(to bottom right, rgb(255, 0, 200), rgb(107, 44, 255));
     width: 100%;
-    height: 50px;
+    height: 75px;
+    line-height: 75px;
     border-radius: 50px;
     margin: 10px;
 
-    transition: height .3s ease;
+    font-size: 50px;
+    text-align: center;
+    text-decoration: none;
+
+    transition: height .3s ease, line-height .6s ease;
 }
 
 .nav-btn:hover {
-    height: 70px;
+    height: 100px;
+    line-height: 100px;
 }
 
 @media (max-width: 1400px) {

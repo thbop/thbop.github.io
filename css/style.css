@@ -10,6 +10,10 @@
     display: none;
 }
 
+.front {
+    display: flex;
+}
+
 .card {
     border-radius: 15px;
     display: flex;
@@ -42,16 +46,42 @@
     width: 50%;
     height: 500px;
     margin-left: auto;
-    margin-right: auto;
     margin-top: 5%;
 
     align-items: center;
     justify-content: center;
 }
 
+.nav {
+    width: 5%;
+    /* background-color: aqua; */
+    margin-right: auto;
+    margin-top: 5%;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.nav-btn {
+    background-image: linear-gradient(to bottom right, rgb(255, 0, 200), rgb(107, 44, 255));
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    margin: 10px;
+
+    transition: height .3s ease;
+}
+
+.nav-btn:hover {
+    height: 70px;
+}
+
 @media (max-width: 1400px) {
     .front-card {
         width: 75%;
         flex-direction: column;
+    }
+    .nav-btn {
+        width: 125%;
     }
 }

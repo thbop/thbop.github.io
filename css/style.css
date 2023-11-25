@@ -11,7 +11,7 @@
 }
 
 .card {
-    border-radius: 10px;
+    border-radius: 15px;
     display: flex;
     padding: 10px;
 }
@@ -27,7 +27,13 @@
     height: 200px;
     margin: 15px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
+
+    transition: height .3s ease;
+}
+
+.front-card-flex:hover {
+    height: 250px;
 }
 
 

@@ -60,6 +60,7 @@
     flex-direction: column;
 
     justify-content: center;
+
 }
 
 .nav-btn {
@@ -72,9 +73,9 @@
 
     font-size: 50px;
     text-align: center;
-    text-decoration: none;
 
     transition: height .3s ease, line-height .6s ease;
+
 }
 
 .nav-btn:hover {
@@ -91,3 +92,4 @@
         width: 125%;
     }
 }
+

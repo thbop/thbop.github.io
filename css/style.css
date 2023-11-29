@@ -69,18 +69,23 @@
     height: 75px;
     line-height: 75px;
     border-radius: 50px;
+    border: none;
     margin: 10px;
 
     font-size: 50px;
     text-align: center;
 
-    transition: height .3s ease, line-height .6s ease;
+    cursor: pointer;
 
+    transition: height .3s ease, line-height .6s ease;
 }
 
 .nav-btn:hover {
     height: 100px;
     line-height: 100px;
+}
+.nav-btn:active {
+    height: 120px;
 }
 
 @media (max-width: 1400px) {

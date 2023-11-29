@@ -1,6 +1,6 @@
 var i = 0;
 var txt = 'i dont';
-var txt2 = ' don\'t know web design'
+var txt2 = ' don\'t know web design.'
 var speed = 50;
 
 function randint(a, b) {

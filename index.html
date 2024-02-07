@@ -1,30 +1,74 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <title>Thbop Dev</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/typer_animation.js" type="text/javascript"></script>
+        <title>Thbop</title>
+        <style>
+            body {
+                background: #000;
+                color: #eee;
+                font-size: large;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            a { color:rgb(0, 255, 210); }
+            a:hover { color:yellow; text-decoration: none; }
+            img { image-rendering: pixelated; }
+            .red { color: #f00; }
+            .magenta { color:#f0f; }
+        </style>
     </head>
 
-    <body onload="typeWriter()">
-        <div class="front">
-            <div class="card front-card">
-                <div class="front-card-flex">
-                    <p id="typer"></p>
-                </div>
-                <div class="front-card-flex">
-                    at least i tried.
-                </div>
-            </div>
+    <body>
+        <hr>
+        <h1>Thbop's Personal Website</h1>
+        <hr>
+        <h5><i>I decided to act like I don't know any CSS (or HTML for that matter) and make my website like more classy developers.</i></h5>
+        <p>Software and video game developer. You can check out my github <a href="https://github.com/thbop/" target="_blank">here</a>.</p>
 
-            <div class="card nav">
-                <button class="nav-btn">i</button>
-                <button class="nav-btn">j</button>
-                <button class="nav-btn">k</button>
-            </div>
-        </div>dfd
+        <img src="randomphotos/e^x.png" width=100p />
+        <p>^^^ Here's a random photo.</p>
+
+        <hr>
+        <h2>Minecraft</h2>
+        <p>I do have some old projects available on <a href="https://www.planetminecraft.com/member/thbop/" target="_blank">PMC</a>.</p>
+        <p>I have more recently worked on a public server called Thbopica. You can join (or start it up) at <code class="magenta">thbopica.minefort.com</code>.</p>
+
+        <hr>
+        <h2>Video Games</h2>
+        <p>I publish my video games on itch.io, here's <a href="https://thbop.itch.io/" target="_blank">my page</a>.</p>
+        <p>Most of my projects were coded in python and packaged with pyinstaller; thus, your computer will probably think they are viruses, but you could just run the source code if that makes you feel better.</p>
+        <p>Current titles:</p>
+        <ul>
+            <li><a href="https://thbop.itch.io/pineapple" target="_blank">Pineapple</a> <--- An actually good game</li>
+            <li><a href="https://thbop.itch.io/pigeon" target="_blank">Pigeon</a> <--- Like flappy bird, but worse</li>
+            <li><a href="https://thbop.itch.io/interplanetary-orbital-simulation" target="_blank">Interplanetary Orbital Simulation</a> <--- IOS for short; not really a game, but still cool.</li>
+            <li><a href="https://thbop.itch.io/boring-pong" target="_blank">Boring Pong</a> <--- Just pong, made with raylib as my first C project. Lack of OOP was painful.</li>
+        </ul>
+        <p>I have more games, these are just the ones that have taken the most time to create.</p>
+        
+        <hr>
+        <h2>Computer Science</h2>
+        <img src="https://raw.githubusercontent.com/thbop/6502/main/misc/grid.gif" />
+        <p>Check out my (in progress) 6502 emulator <a href="https://github.com/thbop/6502" target="_blank">here</a>. During the course of this project, I accidentally learned some 6502 assembly while exploring low level architecture.</p>
+        
+        <hr>
+        <h2>Graphics</h2>
+        <p>I've pretty much done a lot of very dumb things in the realm of graphics, slowly improving over time.</p>
+        <p>I've tried Peter Shirley's <i><a href="https://raytracing.github.io/books/RayTracingInOneWeekend.html" target="_blank">Ray Tracing in One Weekend </a></i> book and made this in Python:</p>
+        <img src="https://github.com/thbop/Ray-Tracing/blob/main/out.png?raw=true" width="400px" />
+        <h5><i>And yes, I had to look up how to remove that nasty image interpolation</i></h5>
+        <p>From this project I have gained the knowledge that it is not smart to write a raytracer in Python.</p>
+
+        <p>In fact though, it is fairly fun and difficult to create a <a href="https://github.com/thbop/RawCpp3D" target="_blank">3D renderer purely in C++</a>:</p>
+        <img src="https://github.com/thbop/RawCpp3D/raw/main/showcase/render1.png" />
+        <h5><i>The hardest bit was definitely the triangle rasterization, because I did not know what I was doing...</i></h5>
+
+        <p>Also, along the lines of that renderer, <a href="https://github.com/thbop/Lambert" target="_blank">obsessing over Lambertian Diffuse is not uncommon</a>.</p>
+
+        <p>It seems like my graphics section is fairly large. I hope that does not make a statement. I might need to dedicate a page purely to graphics in the future...</p>
+
+        <hr>
+        <p>Website last updated Feb. 2 2024 by Thbop.</p>
+        <hr>
 
     </body>
 </html>

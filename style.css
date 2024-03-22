@@ -1,0 +1,17 @@
+/* Lazy CSS */
+
+body {
+    background: #000;
+    color: #eee;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}
+a { color:rgb(0, 255, 210); }
+a:hover { color:yellow; text-decoration: none; }
+img { image-rendering: pixelated; }
+.red { color: #f00; }
+.magenta { color:#f0f; }
+
+.nav {
+    padding: 10px;
+}

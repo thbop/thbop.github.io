@@ -81,8 +81,6 @@ Hello World!
 
 <p>One benefit, made immediately apparent when using a compiled language, is that users downloading a program do not need a "compiler" (or "interpreter") to run it; their machine already knows how to run it.</p>
 
-<p><i>Unfortunately, writing takes time. Time I do not have and thus you are left with an incomplete tutorial.</i></p>
-
 <hr>
 
 <h3>Theory Dump: How It Works with cc65</h3>
@@ -173,8 +171,89 @@ L0001:	jsr     incsp1
 
 <p>The linker basically inserts the program bytes from the main.o object file and its dependencies into one executable.</p>
 
-<!--stack and heap
+<p>If you found this process and the 6502 interesting, check out the following projects / sources relating to the topic:</p>
 
-char arrays and pointers -->
+<ul>
+    <li><a href="https://github.com/thbop/6502">My personal 6502 emulator (unfinished)</a></li>
+    <li><a href="https://github.com/davepoo/6502Emulator">Dave Poo's 6502 emulator</a></li>
+    <li><a href="https://web.archive.org/web/20200610195848/http://www.obelisk.me.uk/6502/">Very in-depth explanation of the 6502 architecture</a></li>
+    <li><a href="https://youtu.be/0q6Ujn_zNH8?si=z-sta-QvbVqHgjVK">Ben Eater's video covering the assembly process for 6502 processors</a></li>
+    <li><a href="https://youtu.be/qJgsuQoy9bc?si=TG_lTZ-Ze_wuXtWe">Dave Poo's video about coding a 6502 emulator</a></li>
+</ul>
+
+<hr>
+<h3>Basic Data Types and Variables</h3>
+
+<p>This section is going to be very simple compared to the last. So take a breath-- and let's continue.</p>
+
+<p>C has a few common data types:</p>
+
+<ul>
+    <li><code class="magenta">int</code> - 16 or 32 bit, or 2 or 4 byte representation of a signed integer. The signed integer can be negative at the expense of a half-reduced max value.</li>
+    <li><code class="magenta">short</code> - 16 bit or 2 byte representation of a signed integer.</li>
+    <li><code class="magenta">char</code> - 8 bit or 1 byte representation of a signed integer. Commonly used to store a single character or an array/string of characters (more on that later).</li>
+    <li><code class="magenta">float</code> - 32 bit or 4 byte representation of a signed floating point number (decimal number).</li>
+    <li><code class="magenta">double</code> - 64 bit or 8 byte representation of a signed floating point number. A more precise "float" at the expense of memory and process time.</li>
+</ul>
+
+<p>Any of these declarations can be prefixed with <code class="magenta">unsigned</code> to make them unsigned (not negative):</p>
+
+<code class="language-clike">unsigned int a = -10; // Would have undefined behavior (unless you know what you are doing)</code>
+
+<p>They can also be prefixed with <code class="magenta">const</code> to define them as constant and immutable.</p>
+
+<code class="language-clike">const int a = 76; // "a" cannot be modified</code>
+
+<p>
+    Additionally, int's can be prefixed with <code class="magenta">long</code> to implicitly define a 32 bit or 4 byte integer.
+    On some systems, int's by default are 16 bit while on other systems they are 32 bit. The keyword <code class="magenta">long</code> forces an int to be 32 bit (<a href="https://stackoverflow.com/questions/13652556/what-happens-when-i-assign-long-int-to-int-in-c">source</a>).
+</p>
+
+<code class="language-clike">long int a = -45; // 32 bit int</code>
+
+<p>The <code class="magenta">sizeof(x)</code> function can be used to determine the size (in bytes) of a particular variable.</p>
+
+<p>You might have already run into this issue while playing with numbers: <b class="red">"I can't print them!"</b></p>
+
+<p>Don't worry! <code class="magenta">printf()</code> is defined as:</p>
+
+<code class="language-clike">static inline int printf(const char *__format, ...) { ... }</code>
+
+<p><b class="red">"Thbop, that doesn't help."</b></p>
+
+<p>The arguments for <code class="magenta">printf()</code> are: "<code class="magenta">const char* __format</code>" (a constant character pointer or array; I'll cover pointers and arrays later, but for now you can think of this as a string) and "..."</p>
+
+<p>The word "format" should get you thinking of the Python str.format() method. The concept is the same, but the execution is slightly different:</p>
+
+<pre><code class="language-clike">int a = 10;
+float b = 65.0f;
+double c = 34.654;
+printf("%d\n", a); // Prints "a" as 10; note %d is the same as %i, I just prefer %d
+printf("%d %f %lf\n", a, b, c); // Outputs: 10 65.000000 34.654000
+</code></pre>
+
+<p>Some common type specifiers are shown below:</p>
+
+<table>
+    <tr><th>Symbol</th><th>Type</th></tr>
+    <tr><td>%d or %i</td><td>int</td></tr>
+    <tr><td>%u</td><td>unsigned int</td></tr>
+    <tr><td>%lu</td><td>long unsigned int</td></tr>
+    <tr><td>%f or %F</td><td>float</td></tr>
+    <tr><td>%lf (long float)</td><td>double</td></tr>
+    <tr><td>%c</td><td>char (actually prints a character)</td></tr>
+    <tr><td>%s</td><td>string (actually a char*)</td></tr>
+</table>
+
+(Sources: <a href="https://www.w3schools.com/c/c_data_types.php">w3schools data types</a> and <a href="https://www.w3schools.com/c/c_data_types_sizeof.php">w3schools sizeof</a>)
+
+<!-- <hr>
+<h3>Some </h3> -->
+
+<!--
+char arrays and pointers
+
+stack and heap
+-->
 
  {{ insert end.html }}

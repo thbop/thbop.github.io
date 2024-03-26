@@ -9,6 +9,17 @@ body {
 a { color:rgb(0, 255, 210); }
 a:hover { color:yellow; text-decoration: none; }
 img { image-rendering: pixelated; }
+
+table {
+    width: 30%;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 2px solid #aaa;
+    border-right: 1px solid #a0a0a0;
+  }
+
 .red { color: #f00; }
 .magenta { color:#f0f; }
 

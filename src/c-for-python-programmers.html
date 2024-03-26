@@ -69,12 +69,12 @@ int main() {
 
 <p>Using tcc in the console, run <code>tcc main.c</code>. A main.exe (windows) should be generated. Here's a windows example:</p>
 
-<pre><code class="magenta">C:\Users\thbop\Desktop>tcc main.c
+<pre><code class="magenta">C:\Users\thbop\Desktop\C-For-Python>tcc main.c
 
-C:\Users\thbop\Desktop>main
+C:\Users\thbop\Desktop\C-For-Python>main
 Hello World!
 
-C:\Users\thbop\Desktop>main.exe
+C:\Users\thbop\Desktop\C-For-Python>main.exe
 Hello World!
 
 </code></pre>
@@ -140,10 +140,40 @@ L0001:	jsr     incsp1
 	rts                 ; Return from program. This processor can only run one program at a time, so we need to be able to return.
 </code></pre>
 
+<p>Congratulations! You were reading assembly code!</p>
 
-<!--How it works with cc65
+<p>When assembled, the object file's (".o") raw bytes look something like this:</p>
 
-stack and heap
+<pre><code>00000000  55 7A 6E 61 11 00 00 00  60 00 00 00 0B 00 00 00  |Uzna....`.......|
+00000010  6B 00 00 00 0F 00 00 00  7A 00 00 00 E5 00 00 00  |k.......z.......|
+00000020  5F 01 00 00 20 00 00 00  7F 01 00 00 0C 00 00 00  |_...............|
+00000030  8B 01 00 00 02 00 00 00  8E 01 00 00 9C 00 00 00  |................|
+
+...
+
+00000220  1F 01 00 00 00 2B 01 00  00 00 20 00 06 6D 61 69  |.....+.......mai| <--- Notice how the object file stores extra data about the program.
+00000230  6E 2E 73 18 63 61 36 35  20 56 32 2E 31 39 20 2D  |n.s.ca65.V2.19.-| <--- This data will be used by the linker
+00000240  20 47 69 74 20 38 63 33  32 39 64 66 19 63 63 36  |.Git.8c329df.cc6| <---
+00000250  35 20 76 20 32 2E 31 39  20 2D 20 47 69 74 20 38  |5.v.2.19.-.Git.8| <---
+00000260  63 33 32 39 64 66 02 73  70 04 73 72 65 67 07 72  |c329df.sp.sreg.r| <---
+00000270  65 67 73 61 76 65 07 72  65 67 62 61 6E 6B 04 74  |egsave.regbank.t| <---
+00000280  6D 70 31 04 74 6D 70 32  04 74 6D 70 33 04 74 6D  |mp1.tmp2.tmp3.tm| <---
+00000290  70 34 04 70 74 72 31 04  70 74 72 32 04 70 74 72  |p4.ptr1.ptr2.ptr| <---
+000002A0  33 04 70 74 72 34 0E 6C  6F 6E 67 62 72 61 6E 63  |3.ptr4.longbranc| <---
+000002B0  68 2E 6D 61 63 0B 5F 5F  53 54 41 52 54 55 50 5F  |h.mac.__STARTUP_| <---
+000002C0  5F 05 5F 6D 61 69 6E 05  70 75 73 68 61 05 4C 30  |_._main.pusha.L0| <---
+000002D0  30 30 34 05 4C 30 30 30  32 05 2E 73 69 7A 65 07  |004.L0002..size.| <---
+000002E0  62 6F 6F 6C 75 6C 74 05  4C 30 30 30 31 06 69 6E  |boolult.L0001.in| <---
+000002F0  63 73 70 31 04 43 4F 44  45 06 52 4F 44 41 54 41  |csp1.CODE.RODATA| <---
+00000300  03 42 53 53 04 44 41 54  41 08 5A 45 52 4F 50 41  |.BSS.DATA.ZEROPA| <---
+00000310  47 45 04 4E 55 4C 4C 00  00  |GE.NULL..|
+</code></pre>
+
+<p>Now onto the final stage of "compilation," linking.</p>
+
+<p>The linker basically inserts the program bytes from the main.o object file and its dependencies into one executable.</p>
+
+<!--stack and heap
 
 char arrays and pointers -->
 

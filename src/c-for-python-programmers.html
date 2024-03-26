@@ -26,6 +26,8 @@
 
 <p>Since tcc (Tiny C Compiler) is much simpler than gcc (one of mingw-w64's compilers), the resulting file size is very tiny. We're talking 2KB versus 240KB just for a simple "Hello World!" program.</p>
 
+<p>(Note: For windows users, I'd recommend adding tcc to PATH; if you do not know what that means, you probably aren't experienced enough in Python to be following this tutorial.)</p>
+
 <hr>
 <h3>Hello World!</h3>
 
@@ -45,6 +47,7 @@ int main() {
     <li>
         <code class="magenta">#include &lt;stdio.h&gt;</code> - <a href="https://cplusplus.com/doc/tutorial/preprocessor/">preprocessor directive</a> functioning similar to an <code>import</code> statement in Python code.
         "std" means standard, "io" means input/output, and ".h" means it is a header file. "stdio.h" contains functions for standard input/output, like <code>printf()</code>.
+        <b>Preprocessor statements do not end with semicolons.</b>
     </li>
     <li>
         <code class="magenta">int main {</code> - defines the program entry point. Unlike Python, to run any code in C you must define a main function; additionally, this function must return an integer (the <code>int</code>).
@@ -62,11 +65,83 @@ int main() {
     </li>
 </ul>
 
+<p>To compile this "Hello World!" program, first create a text file named: "main.c". Unlike Java (and similar languages) the name of the .c source file does not correspond to the name of the <code>main()</code> function. You can name your file whatever you want as long as it ends in ".c".</p>
+
+<p>Using tcc in the console, run <code>tcc main.c</code>. A main.exe (windows) should be generated. Here's a windows example:</p>
+
+<pre><code class="magenta">C:\Users\thbop\Desktop>tcc main.c
+
+C:\Users\thbop\Desktop>main
+Hello World!
+
+C:\Users\thbop\Desktop>main.exe
+Hello World!
+
+</code></pre>
+
+<p>One benefit, made immediately apparent when using a compiled language, is that users downloading a program do not need a "compiler" (or "interpreter") to run it; their machine already knows how to run it.</p>
+
 <p><i>Unfortunately, writing takes time. Time I do not have and thus you are left with an incomplete tutorial.</i></p>
 
-<!-- Hello World compilation
+<hr>
 
-How it works with cc65
+<h3>Theory Dump: How It Works with cc65</h3>
+
+<p>C Compilers basically convert C code to <a href="https://en.wikipedia.org/wiki/Assembly_language">Assembly</a>, assemble it into an object file (".o"), and finally link it into a machine code.</p>
+
+<p>For this theory dump, I'll show the entire process for the <a href="https://en.wikipedia.org/wiki/MOS_Technology_6502">6502 Processor</a>, an older and (relatively) simpler processor compared to modern processors. (6502 assembly is also much simpler to understand compared to modern assembly.)</p>
+
+<p>First, before we get into it, you will have to understand the elementary concept of a <a href="https://en.wikipedia.org/wiki/Byte">Byte</a>. (Simple explanation: 8 bits, 1 bit is an on or off state.)</p>
+
+<p>For this walk-through, I'll be using this program:</p>
+
+<pre><code class="language-clike">// We do not #include &lt;stdio.h&gt; because the 6502 is just a processor; there is no standard defined input/output.
+unsigned char main() {
+    unsigned char i = 0;
+    while ( i &lt; 10 ) {
+        i++;
+    }
+    return 0;
+}
+</code></pre>
+
+<p>Note: <code class="magenta">unsigned char</code> declares that variable's / function's type as an unsigned (no negative sign, only positive) character (1 byte). You can think of it as a variable that can only store values from 0 to 255 (range of 2^8=256).</p>
+
+<p>Aside from that no-so-obvious (for some) note, this program is relatively simple and its Python equivalent is:</p>
+
+<pre><code class="language-python">i = 0
+while i &lt; 10:
+    i += 1
+</code></pre>
+
+<p>The abridged 6502 assembly source file (compiled by <a href="https://cc65.github.io/">cc65</a>) looks like this (with comments added):</p>
+
+<pre><code class="language-asm6502">.segment	"CODE"
+
+	lda     #$00        ; Loads a 0 into the A register; the A register or Accumulator is general purpose single-byte storage in the CPU
+	jsr     pusha       ; Pushes A onto the stack (I'll cover the stack later)
+	jmp     L0004       ; Jumps to the while loop (the assembly line starting with "L0004:")
+L0002:	ldy     #$00    ; This is the "i++" expression within the while loop
+	ldx     #$00
+	clc
+	lda     #$01        ; Loads 1 into A so that we can add it to the C variable "i"
+	adc     (sp),y      ; Adds A + i
+	sta     (sp),y      ; Stores the result in i. After processing this line, the CPU will go to the next line (L0004)
+L0004:	ldy     #$00    ; Start of the while loop line
+	ldx     #$00
+	lda     (sp),y      ; Loads the value of i into A
+	cmp     #$0A        ; Compares A to 0A (hex representation of 10)
+	jsr     boolult     ; Jumps to the boolult subroutine to handle the "<" sign
+	jne     L0002       ; If the comparison is is satisfied (e.g. A is less than 10), jump to L0002
+	ldx     #$00        ; When the CPU is on this instruction, the while loop has finished and everything just needs to be cleaned up.
+	lda     #$00
+	jmp     L0001       ; Jump to L0001
+L0001:	jsr     incsp1
+	rts                 ; Return from program. This processor can only run one program at a time, so we need to be able to return.
+</code></pre>
+
+
+<!--How it works with cc65
 
 stack and heap
 

@@ -17,10 +17,43 @@
 
  
 
-<p>Unfortunately, I have not had time to write this. Working on the website "backend" tools too much.</p>
+<p>C is a compiled low-level language first developed at Bell Labs by Dennis Ritchie in 1972 (<a href="https://en.wikipedia.org/wiki/C_(programming_language)">source</a>).</p>
+
+<p>As a Python programmer, you are used to a language developed by <a href="https://gvanrossum.github.io/">Guido van Rossum</a>. Python was coded in C++, an almost extension of C (<a href="https://en.wikipedia.org/wiki/C%2B%2B">source</a>).</p>
+
+<p>Additionally, Python is an <a href="https://en.wikipedia.org/wiki/Interpreter_(computing)">Interpreted Language</a>, parsing instructions line by line opposed to a <a href="https://en.wikipedia.org/wiki/Compiled_language">Compiled Language</a>.</p>
+
+<p>
+    Thus, as previously stated, Python is a high-level programming language (far abstracted from raw machine code) while C is a low-level programming language.
+    Furthermore, as a C programmer, you can expect to be far-removed from the high-level features of an <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object Oriented Programming</a>.
+</p>
+
+<p>In C, one primarily and fundamentally deals with raw numbers and memory addresses. High-level features such as strings, lists, dictionaries and the like do not exist and must be coded from scratch.</p>
+
+<p>
+    To compile C programs you, of course, will need a compiler. For general purpose projects I'd use <a href="https://www.mingw-w64.org/downloads/">mingw-w64</a>, specifically <i>i686-w64-mingw32</i>.
+    Mingw-w64 is packaged with a ton of tools and installing it can be tricky for beginners, but it allows one to write C and C++ programs. 
+</p>
+
+<p>
+    For this tutorial, I'll be using the <a href="https://bellard.org/tcc/">Tiny C Compiler</a> due to its small size and ease of use.
+    I specifically downloaded <i>tcc-0.9.27-win32-bin</i> since I am on Windows 10. Don't stress to much between 32 bit versus 64 bit (unless, of course, you are running a 32 bit operating system).
+</p>
+
+<p>Since tcc (Tiny C Compiler) is much simpler than gcc (one of mingw-w64's compilers), the resulting file size is very tiny. We're talking 2KB versus 240KB just for a simple "Hello World!" program.</p>
+
+<p><i>Unfortunately, writing takes time. Time I do not have and thus you are left with an incomplete tutorial.</i></p>
+
+<!-- Hello World compilation
+
+How it works with cc65
+
+stack and heap
+
+char arrays and pointers -->
 
          <hr>
-        <p>Website last updated Fri Mar 22 00:22:55 2024 by Thbop.</p>
+        <p>Website last updated Tue Mar 26 13:13:40 2024 by Thbop.</p>
         <hr>
 
     </body>

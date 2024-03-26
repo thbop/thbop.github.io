@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <title> Thbop -> C For Python Programmers</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/prism.css" />
         <link rel="shortcut icon" type="image/x-icon" href="images/pfp.ico" />
     </head>
 
@@ -17,6 +18,7 @@
 
  
 
+<h3>Introduction</h3>
 <p>C is a compiled low-level language first developed at Bell Labs by Dennis Ritchie in 1972 (<a href="https://en.wikipedia.org/wiki/C_(programming_language)">source</a>).</p>
 
 <p>As a Python programmer, you are used to a language developed by <a href="https://gvanrossum.github.io/">Guido van Rossum</a>. Python was coded in C++, an almost extension of C (<a href="https://en.wikipedia.org/wiki/C%2B%2B">source</a>).</p>
@@ -42,6 +44,42 @@
 
 <p>Since tcc (Tiny C Compiler) is much simpler than gcc (one of mingw-w64's compilers), the resulting file size is very tiny. We're talking 2KB versus 240KB just for a simple "Hello World!" program.</p>
 
+<hr>
+<h3>Hello World!</h3>
+
+<p>A basic "Hello World!" program looks like this:</p>
+
+<pre><code class="language-clike">#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello World!\n");
+    return 0;
+}
+</code></pre>
+
+<p>Here's a line-by-line explanation:</p>
+
+<ul>
+    <li>
+        <code class="magenta">#include &lt;stdio.h&gt;</code> - <a href="https://cplusplus.com/doc/tutorial/preprocessor/">preprocessor directive</a> functioning similar to an <code>import</code> statement in Python code.
+        "std" means standard, "io" means input/output, and ".h" means it is a header file. "stdio.h" contains functions for standard input/output, like <code>printf()</code>.
+    </li>
+    <li>
+        <code class="magenta">int main {</code> - defines the program entry point. Unlike Python, to run any code in C you must define a main function; additionally, this function must return an integer (the <code>int</code>).
+        The returned <code>int</code> signals to the operating system the success or failure of your program. 0 = success while 1 = failure.
+    </li>
+    <li>
+        <code class="magenta">printf("Hello World!\n");</code> - prints a character array to the console. The "f" in <code>printf()</code> stands for formatted (<a href="https://stackoverflow.com/questions/10761713/what-is-the-meaning-of-f-in-printf">source</a>).
+        Notice also how the line is terminated with a semicolon; this simply tells the compiler this line is finished (not the invisible newline [or '\n'] character that Python uses).
+    </li>
+    <li>
+        <code class="magenta">return 0;</code> - simply returns 0 denoting to the system that the program ran successfully.
+    </li>
+    <li>
+        <code class="magenta">}</code> - end bracket to define the end of the <code>main()</code> function. Brackets are nested like indentation in Python. Furthermore, C does not rely on indentation at all (a valid program can consist on a single line).
+    </li>
+</ul>
+
 <p><i>Unfortunately, writing takes time. Time I do not have and thus you are left with an incomplete tutorial.</i></p>
 
 <!-- Hello World compilation
@@ -53,8 +91,8 @@ stack and heap
 char arrays and pointers -->
 
          <hr>
-        <p>Website last updated Tue Mar 26 13:13:40 2024 by Thbop.</p>
+        <p>Website last updated Tue Mar 26 14:12:46 2024 by Thbop.</p>
         <hr>
-
+        <script src="js/prism.js"></script> 
     </body>
 </html> 

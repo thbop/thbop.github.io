@@ -20,22 +20,24 @@
  
 
 <h3>Introduction</h3>
+<p><i>This tutorial assumes you have a decent grasp of the Python language.</i></p>
+
 <p>C is a compiled low-level language first developed at Bell Labs by Dennis Ritchie in 1972 (<a href="https://en.wikipedia.org/wiki/C_(programming_language)">source</a>).</p>
 
-<p>As a Python programmer, you are used to a language developed by <a href="https://gvanrossum.github.io/">Guido van Rossum</a>. Python was coded in C++, an almost extension of C (<a href="https://en.wikipedia.org/wiki/C%2B%2B">source</a>).</p>
+<p>As a Python programmer, you are used to a language developed by <a href="https://gvanrossum.github.io/">Guido van Rossum</a>. Python was coded in C++, an extension of C (<a href="https://en.wikipedia.org/wiki/C%2B%2B">source</a>).</p>
 
 <p>Additionally, Python is an <a href="https://en.wikipedia.org/wiki/Interpreter_(computing)">Interpreted Language</a>, parsing instructions line by line opposed to a <a href="https://en.wikipedia.org/wiki/Compiled_language">Compiled Language</a>.</p>
 
 <p>
-    Thus, as previously stated, Python is a high-level programming language (far abstracted from raw machine code) while C is a low-level programming language.
-    Furthermore, as a C programmer, you can expect to be far-removed from the high-level features of an <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object Oriented Programming</a>.
+    Thus, as previously implied, Python is a high-level programming language (far abstracted from raw machine code) while C is a low-level programming language.
+    Furthermore, as a C programmer, you can shouldn't expect high-level features such as <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object Oriented Programming</a> and lists.
 </p>
 
 <p>In C, one primarily and fundamentally deals with raw numbers and memory addresses. High-level features such as strings, lists, dictionaries and the like do not exist and must be coded from scratch.</p>
 
 <p>
-    To compile C programs you, of course, will need a compiler. For general purpose projects I'd use <a href="https://www.mingw-w64.org/downloads/">mingw-w64</a>, specifically <i>i686-w64-mingw32</i>.
-    Mingw-w64 is packaged with a ton of tools and installing it can be tricky for beginners, but it allows one to write C and C++ programs. 
+    To compile C programs you, of course, will need a compiler. For general purpose projects I'd use <a href="https://www.mingw-w64.org/downloads/">mingw-w64</a> (specifically <i>i686-w64-mingw32</i> packaged with <i>MSYS2</i>).
+    Mingw-w64 is packaged with a ton of tools and installing it can be tricky for beginners, but it allows one to compile C and C++ programs. 
 </p>
 
 <p>
@@ -45,7 +47,7 @@
 
 <p>Since tcc (Tiny C Compiler) is much simpler than gcc (one of mingw-w64's compilers), the resulting file size is very tiny. We're talking 2KB versus 240KB just for a simple "Hello World!" program.</p>
 
-<p>(Note: For windows users, I'd recommend adding tcc to PATH; if you do not know what that means, you probably aren't experienced enough in Python to be following this tutorial.)</p>
+<p>(Note: For windows users, I'd recommend adding tcc to PATH. If you do not know what that means, you probably aren't experienced enough in Python to be following this tutorial.)</p>
 
 <hr>
 <h3>Hello World!</h3>
@@ -65,7 +67,7 @@ int main() {
 <ul>
     <li>
         <code class="magenta">#include &lt;stdio.h&gt;</code> - <a href="https://cplusplus.com/doc/tutorial/preprocessor/">preprocessor directive</a> functioning similar to an <code>import</code> statement in Python code.
-        "std" means standard, "io" means input/output, and ".h" means it is a header file. "stdio.h" contains functions for standard input/output, like <code>printf()</code>.
+        "std" means standard, "io" means input/output, and ".h" means it is a header file. "stdio.h" contains functions for standard input/output, like <code class="magenta">printf()</code>.
         <b>Preprocessor statements do not end with semicolons.</b>
     </li>
     <li>
@@ -74,19 +76,19 @@ int main() {
     </li>
     <li>
         <code class="magenta">printf("Hello World!\n");</code> - prints a character array to the console. The "f" in <code>printf()</code> stands for formatted (<a href="https://stackoverflow.com/questions/10761713/what-is-the-meaning-of-f-in-printf">source</a>).
-        Notice also how the line is terminated with a semicolon; this simply tells the compiler this line is finished (not the invisible newline [or '\n'] character that Python uses).
+        Notice also how the line is terminated with a semicolon; this simply tells the compiler this line is finished (unlike the invisible newline [or '\n'] character that Python uses).
     </li>
     <li>
         <code class="magenta">return 0;</code> - simply returns 0 denoting to the system that the program ran successfully.
     </li>
     <li>
-        <code class="magenta">}</code> - end bracket to define the end of the <code>main()</code> function. Brackets are nested like indentation in Python. Furthermore, C does not rely on indentation at all (a valid program can consist on a single line).
+        <code class="magenta">}</code> - end bracket to define the end of the <code>main()</code> function. Brackets are nested like indentation in Python. Furthermore, C does not rely on indentation at all (a valid program can consist of a single line).
     </li>
 </ul>
 
 <p>To compile this "Hello World!" program, first create a text file named: "main.c". Unlike Java (and similar languages) the name of the .c source file does not correspond to the name of the <code>main()</code> function. You can name your file whatever you want as long as it ends in ".c".</p>
 
-<p>Using tcc in the console, run <code>tcc main.c</code>. A main.exe (windows) should be generated. Here's a windows example:</p>
+<p>Using tcc in the console, run <code>tcc main.c</code>. A main.exe (windows) should be generated. Here's an example:</p>
 
 <pre><code class="magenta">C:\Users\thbop\Desktop\C-For-Python>tcc main.c
 
@@ -104,15 +106,15 @@ Hello World!
 
 <h3>Theory Dump: How It Works with cc65</h3>
 
-<p>C Compilers basically convert C code to <a href="https://en.wikipedia.org/wiki/Assembly_language">Assembly</a>, assemble it into an object file (".o"), and finally link it into a machine code.</p>
+<p>C Compilers basically convert C code into <a href="https://en.wikipedia.org/wiki/Assembly_language">Assembly</a>, assemble it into an object file (".o"), and finally link it into a machine code.</p>
 
-<p>For this theory dump, I'll show the entire process for the <a href="https://en.wikipedia.org/wiki/MOS_Technology_6502">6502 Processor</a>, an older and (relatively) simpler processor compared to modern processors. (6502 assembly is also much simpler to understand compared to modern assembly.)</p>
+<p>For this theory dump, I'll show the entire process, generating a program that can run on the <a href="https://en.wikipedia.org/wiki/MOS_Technology_6502">6502 Processor</a>, an older and (relatively) simpler processor compared to modern processors. (6502 assembly is also much simpler to understand compared to modern assembly.)</p>
 
-<p>First, before we get into it, you will have to understand the elementary concept of a <a href="https://en.wikipedia.org/wiki/Byte">Byte</a>. (Simple explanation: 8 bits, 1 bit is an on or off state.)</p>
+<p>First, you will have to understand the elementary concept of a <a href="https://en.wikipedia.org/wiki/Byte">Byte</a>. (Simple explanation: 8 bits, 1 bit is an on or off state.)</p>
 
 <p>For this walk-through, I'll be using this program:</p>
 
-<pre><code class="language-clike">// We do not #include &lt;stdio.h&gt; because the 6502 is just a processor; there is no standard defined input/output.
+<pre><code class="language-clike">// We do not #include &lt;stdio.h&gt; because the 6502 is just a processor; there is no defined standard input/output.
 unsigned char main() {
     unsigned char i = 0;
     while ( i &lt; 10 ) {
@@ -122,9 +124,9 @@ unsigned char main() {
 }
 </code></pre>
 
-<p>Note: <code class="magenta">unsigned char</code> declares that variable's / function's type as an unsigned (no negative sign, only positive) character (1 byte). You can think of it as a variable that can only store values from 0 to 255 (range of 2^8=256).</p>
+<p>Note: <code class="magenta">unsigned char</code> declares that variable's / function's type as an unsigned (no negative sign, only positive) character (1 byte). You can think of it as an integer variable that can only store values from 0 to 255 (range of 2^8=256).</p>
 
-<p>Aside from that no-so-obvious (for some) note, this program is relatively simple and its Python equivalent is:</p>
+<p>Aside from that no-so-obvious (for some) note, this program is relatively simple and its Python "equivalent" is:</p>
 
 <pre><code class="language-python">i = 0
 while i &lt; 10:
@@ -138,7 +140,7 @@ while i &lt; 10:
 	lda     #$00        ; Loads a 0 into the A register; the A register or Accumulator is general purpose single-byte storage in the CPU
 	jsr     pusha       ; Pushes A onto the stack (I'll cover the stack later)
 	jmp     L0004       ; Jumps to the while loop (the assembly line starting with "L0004:")
-L0002:	ldy     #$00    ; This is the "i++" expression within the while loop
+L0002:	ldy     #$00    ; This section defines the "i++" expression within the while loop
 	ldx     #$00
 	clc
 	lda     #$01        ; Loads 1 into A so that we can add it to the C variable "i"
@@ -208,7 +210,7 @@ L0001:	jsr     incsp1
 <p>C has a few common data types:</p>
 
 <ul>
-    <li><code class="magenta">int</code> - 16 or 32 bit, or 2 or 4 byte representation of a signed integer. The signed integer can be negative at the expense of a half-reduced max value.</li>
+    <li><code class="magenta">int</code> - 16 or 32 bit, or 2 or 4 byte representation of a signed integer. The signed integer can be negative or positive at the expense of a half-reduced max value.</li>
     <li><code class="magenta">short</code> - 16 bit or 2 byte representation of a signed integer.</li>
     <li><code class="magenta">char</code> - 8 bit or 1 byte representation of a signed integer. Commonly used to store a single character or an array/string of characters (more on that later).</li>
     <li><code class="magenta">float</code> - 32 bit or 4 byte representation of a signed floating point number (decimal number).</li>
@@ -245,8 +247,8 @@ L0001:	jsr     incsp1
 <p>The word "format" should get you thinking of the Python str.format() method. The concept is the same, but the execution is slightly different:</p>
 
 <pre><code class="language-clike">int a = 10;
-float b = 65.0f;
-double c = 34.654;
+float b = 65.0f; // const float values like this must be defined with an "f" on the end
+double c = 34.654; // opposed
 printf("%d\n", a); // Prints "a" as 10; note %d is the same as %i, I just prefer %d
 printf("%d %f %lf\n", a, b, c); // Outputs: 10 65.000000 34.654000
 </code></pre>
@@ -266,17 +268,59 @@ printf("%d %f %lf\n", a, b, c); // Outputs: 10 65.000000 34.654000
 
 (Sources: <a href="https://www.w3schools.com/c/c_data_types.php">w3schools data types</a> and <a href="https://www.w3schools.com/c/c_data_types_sizeof.php">w3schools sizeof</a>)
 
-<!-- <hr>
-<h3>Some </h3> -->
+<hr>
+<h3>Some Basic Operations</h3>
+
+<p>The for-loop in Python has the following structure:</p>
+<code class="language-python">for i in iterator:</code>
+
+<p>In C, only the iterator is supplied; one constructs the iterator like so:</p>
+<code class="language-clike">for ( varible-definition; condition; runs-every-iteration ) {...}</code>
+<p>or, for example:</p>
+<code class="language-clike">for ( int i = 0; i &lt; 10; i++ ) {...}</code>
+
+<p>Miscellaneous note: whitespaces do not affect the code <b>in many instances</b>, so:</p>
+<code class="language-clike">for(int i=0;i&lt;10;i++){...}//Hasthesameaffectasabove</code>
+
+<p>Additionally, the variable i will only be defined within the scope between the squiggly brackets {}, so:</p>
+<pre><code class="language-clike">for ( int i = 0; i < 10; i++ ) {...}
+int a = i; // Will result in an error; i is undefined in this scope.
+</code></pre>
+
+<p>Here are some other examples:</p>
+
+<pre><code class="language-clike">int a = 10;
+if ( a == 10 || 5 == 5 ) { // || = or
+	printf("yes\n");
+} else if ( a < 10 && a > 0 ) { // && = and
+	// do something
+} else printf("hmm");
+
+if ( a == 10 )
+	printf("If there's only one statement after if, {} are not required\n");
+
+switch ( a ) {
+	case 1: {
+		printf("a = %d\n", a);
+		break; // case 1 is satisfied, no other cases will be evaluated
+	} case 2:
+		printf("Brackets also do not have to be used here"); // Note: there is subtle difference between having brackets and not having them
+		break;
+	default: printf("Neither are satisfied"); break;
+}
+
+</code></pre>
 
 <!--
 char arrays and pointers
 
 stack and heap
+
+structs
 -->
 
          <hr>
-        <p>Website last updated Tue Mar 26 18:03:40 2024 by Thbop.</p>
+        <p>Website last updated Tue Mar 26 21:23:15 2024 by Thbop.</p>
         <hr>
         <script src="js/prism.js"></script> 
     </body>

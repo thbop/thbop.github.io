@@ -258,6 +258,7 @@ printf("%d %f %lf\n", a, b, c); // Outputs: 10 65.000000 34.654000
 <table>
     <tr><th>Symbol</th><th>Type</th></tr>
     <tr><td>%d or %i</td><td>int</td></tr>
+    <tr><td>%x</td><td>int (hex representation)</td></tr>
     <tr><td>%u</td><td>unsigned int</td></tr>
     <tr><td>%lu</td><td>long unsigned int</td></tr>
     <tr><td>%f or %F</td><td>float</td></tr>
@@ -311,8 +312,96 @@ switch ( a ) {
 
 </code></pre>
 
+<hr>
+<h3>Arrays and Pointers</h3>
+
+<p>Arrays and pointers are a source of much frustration for Python programmers because these features are handled more automatically in Python.</p>
+
+<p>For example, in Python you can simply define a list, append, insert, etc to it to your heart's content. In C, it's not that simple. And what's a pointer?</p>
+
+<p>First, let's discuss what an array is. Here's a simple array definition:</p>
+
+
+<pre><code class="language-clike">int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // Define array with size of 10
+for ( int i = 0; i < 10; i++ ) // "Iterate over the array," more like: "loop 10 times"
+    printf("%d\n", arr[i]);    // Print the value at index i
+</code></pre>
+
+<p>Some notes:</p>
+
+<ul>
+    <li>Stack-defined (what we have here) arrays' sizes cannot be modified.</li>
+    <li>The size of a stack-defined array must be known at compile time, not runtime.</li>
+    <li>Negative indexing (<code class="magenta">arr[-1]</code>) does not exist.</li>
+</ul>
+
+<pre><code class="language-clike">int a = 34;
+int arr[a] = {0}; // "a" is a varible known at runtime, not compile time; this code would result in an error
+// The {0} would initialize the array's values as 0 if this example was valid 
+</code></pre>
+
+<p>To pass an array into a user defined function, the size must be declared in the function parameters:</p>
+
+<pre><code class="language-clike">int array_process( int arr[11] ) { // Notice this array is of size 11; this is still valid but index 10 will result in garbage (random) data
+    printf("%d\n", arr[9]); // Print the 10th element
+    return 0;
+}
+
+int main() {
+    int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    array_process(arr); // Pass array into function
+    return 0;
+}
+</code></pre>
+
+<p>What an interesting introduction into pointers! You might have noticed that I've been rather silent on the topic... until now.</p>
+
+<p>The concept to grasp is this: <b class="magenta">arrays are pointers</b>.</p>
+
+<p>Here's a simple pointer declaration (to leave you even more confused):</p>
+
+<pre><code class="language-clike">int a = 45; // Define a variable; this exists at a particular memory address
+int* b = &a; // Define b to point to a; "int*" denotes a pointer variable and "&a" references a (returns its memory address)
+printf("%d at %x\n", *b, b); // "*b" dereferences b (returning the value of a); b's actual value is a memory address, so we print that here
+</code></pre>
+
+<p>Result: <code>45 at 19ff34</code></p>
+
+<p>Now here's the trick: <b class="magenta">an array is actually a pointer to the first element in an array</b></p>
+
+<p>Thus:</p>
+
+<pre><code class="language-clike">int* arr[4] = {45, 23, 73, 1};
+
+printf("%d ", *arr); // Dereference first value in array, 45
+printf("%d\n", *(arr+3)); // Adding 3 to the address will return the 4th element (or index 3), 1
+</code></pre>
+
+<p>Result: <code>45 1</code></p>
+
+<p>The benefit is that we can rewrite the <code class="magenta">array_process()</code> function as so:</p>
+<code class="language-clike">int array_process( int* arr ) { ... }</code>
+
+<p>The downside to this approach is that there will be no runtime checks when accessing and modifying array members:</p>
+
+<pre><code class="language-clike">int array_process( int* arr ) {
+    printf("%d\n", arr[400]); // Print some random out-of-bound value
+    return 0;
+}
+</code></pre>
+
+<p>I personally wouldn't reccommend messing with out-of-bounds memory at all because it doesn't really have many legitimate uses.</p>
+
+<p>Now to clear up strings:</p>
+<pre><code class="language-clike">char* str = "Hello World!";
+printf("%s\n", str);
+</code></pre>
+
+
+
+
 <!--
-char arrays and pointers
+void and void*
 
 stack and heap
 
@@ -320,7 +409,7 @@ structs
 -->
 
          <hr>
-        <p>Website last updated Tue Mar 26 21:23:15 2024 by Thbop.</p>
+        <p>Website last updated Tue Mar 26 22:38:21 2024 by Thbop.</p>
         <hr>
         <script src="js/prism.js"></script> 
     </body>

@@ -5,7 +5,7 @@
 
 <p>C is a compiled low-level language first developed at Bell Labs by Dennis Ritchie in 1972 (<a href="https://en.wikipedia.org/wiki/C_(programming_language)">source</a>).</p>
 
-<p>As a Python programmer, you are used to a language developed by <a href="https://gvanrossum.github.io/">Guido van Rossum</a>. Python was coded in C++, an extension of C (<a href="https://en.wikipedia.org/wiki/C%2B%2B">source</a>).</p>
+<p>As a Python programmer, you are accustomed to a language developed by <a href="https://gvanrossum.github.io/">Guido van Rossum</a>. Python was coded in C++, an extension of C (<a href="https://en.wikipedia.org/wiki/C%2B%2B">source</a>).</p>
 
 <p>Additionally, Python is an <a href="https://en.wikipedia.org/wiki/Interpreter_(computing)">Interpreted Language</a>, parsing instructions line by line opposed to a <a href="https://en.wikipedia.org/wiki/Compiled_language">Compiled Language</a>.</p>
 
@@ -378,8 +378,23 @@ printf("%d\n", *(arr+3)); // Adding 3 to the address will return the 4th element
 printf("%s\n", str);
 </code></pre>
 
+<hr>
+<h3>Functions and Void</h3>
 
+<p>Yes, I haven't properly covered functions yet. Here's some example code to cover them real quick:</p>
 
+<pre><code class="language-clike">void printintarr( int* arr, int length ) { // A void function returns nothing
+    printf("{ ");
+    for ( int i = 0; i < length; i++ ) printf("%d, ", arr[i]);
+    printf("}\n");
+}
+
+int main() { // main() cannot return void, it must always return an int
+    int a[] = {1, 5, 3, 7, 3, 7, 2, 5};
+    printintarr(a, 8);
+    return 0;
+}
+</code></pre>
 
 <!--
 void and void*

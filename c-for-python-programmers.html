@@ -415,16 +415,71 @@ int main() { // main() cannot return void, it must always return an int
 }
 </code></pre>
 
+<h3>Structs and Typedef</h3>
+
+<p>The closest thing to class, structs provide a sleek way to group variables in an "OOP" way.</p>
+
+<p>The principal difference between a struct and a class is that a stuct cannot have its own methods (or functions). You can, of course, create functions that modify a struct, but they must be external to the struct itself.</p>
+
+<p>Here's an example of a simple struct declaration:</p>
+
+<pre><code class="language-clike">struct vec2 { // Declare struct
+    float x, y;
+};
+
+void printvec2( struct vec2 p ) { // Example of a function that prints the vec2 by passing the struct in directly
+    printf("vec2(%f, %f)\n", p.x, p.y);
+}
+
+void printvec2ptr( struct vec2* p ) { // Passing a pointer to the struct
+    printf("vec2(%f, %f)\n", p->x, p->y); // Notice when dereferencing struct values we use the "->" symbol instead of "."
+}
+
+int main() {
+    struct vec2 p = {4.0f, 1.0f}; // Declare p as type struct vec2; we supply it with a buffer
+
+    printvec2(p);
+    printvec2ptr(&p); // Reference p
+    return 0;
+}
+</code></pre>
+
+<p>As a simplification, we can use <code class="magenta">typedef</code>:</p>
+
+<pre><code class="language-clike">struct vec2 {
+    float x, y;
+} typedef vec2; // Define a custom type for the struct
+
+vec2 subtractv2( vec2 p, vec2 q ) {
+    return (vec2){ p.x - q.x, p.y - q.y }; // "(vec2)" is a type cast
+}
+
+float dot( vec2 p, vec2 q ) {
+    return p.x * q.x + p.y * q.y;
+}
+
+int main() {
+    vec2 p = {5.0f, 20.0f};
+    vec2 q = {7.0f, 2.0f};
+
+    printf( "%f\n",
+        dot( subtractv2( p, q ), q )
+    );
+    return 0;
+}
+</code></pre>
+
 <!--
+structs
+
 void and void*
 
 stack and heap
 
-structs
 -->
 
          <hr>
-        <p>Website last updated Wed Mar 27 20:22:49 2024 by Thbop.</p>
+        <p>Website last updated Fri Mar 29 22:29:14 2024 by Thbop.</p>
         <hr>
         <script src="js/prism.js"></script> 
     </body>

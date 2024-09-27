@@ -4,11 +4,26 @@ body {
     background: #000;
     color: #eee;
     font-size: large;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Consolas", monospace;
 }
 a { color:rgb(0, 255, 210); }
 a:hover { color:yellow; text-decoration: none; }
 img { image-rendering: pixelated; }
+
+mark {
+    color: black;
+    background: #f0f;
+}
+
+spoiler {
+    color: #111;
+    background: #111;
+    border-radius: 3px;
+    transition: all .15s;
+}
+spoiler:hover {
+    color: #eee;
+}
 
 table {
     width: 30%;

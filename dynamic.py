@@ -68,7 +68,7 @@ def generate_nav(htmls):
 
 def main():
     htmls = get_all_html( ['start.html', 'end.html'] )
-    nav_htmls = [ 'index.html', 'tutorial-hub.html' ]
+    nav_htmls = [ 'index.html', 'tutorial-hub.html', 'documentation.html' ]
 
     variables = {
         'title':'Thbop -> {title}',

@@ -3,6 +3,8 @@
 <h3>Introduction</h3>
 <p><i>This tutorial assumes you have a decent grasp of the Python language.</i></p>
 
+<b>This tutorial may contain varying amounts of cringe... follow at your own discretion.</b>
+
 <p>C is a compiled low-level language first developed at Bell Labs by Dennis Ritchie in 1972 (<a href="https://en.wikipedia.org/wiki/C_(programming_language)">source</a>).</p>
 
 <p>As a Python programmer, you are accustomed to a language developed by <a href="https://gvanrossum.github.io/">Guido van Rossum</a>. Python was coded in C++, an extension of C (<a href="https://en.wikipedia.org/wiki/C%2B%2B">source</a>).</p>
@@ -17,8 +19,8 @@
 <p>In C, one primarily and fundamentally deals with raw numbers and memory addresses. High-level features such as strings, lists, dictionaries and the like do not exist and must be coded from scratch.</p>
 
 <p>
-    To compile C programs you, of course, will need a compiler. For general purpose projects I'd use <a href="https://www.mingw-w64.org/downloads/">mingw-w64</a> (specifically <i>i686-w64-mingw32</i> packaged with <i>MSYS2</i>).
-    Mingw-w64 is packaged with a ton of tools and installing it can be tricky for beginners, but it allows one to compile C and C++ programs. 
+    To compile C programs you, of course, will need a compiler. For general purpose projects on Windows 11 I'd use <a href="https://github.com/skeeto/w64devkit/releases">w64devkit</a>.
+    w64devkit is packaged with a ton of tools, and it allows one to compile C and C++ programs.
 </p>
 
 <p>
@@ -26,7 +28,7 @@
     I specifically downloaded <i>tcc-0.9.27-win32-bin</i> since I am on Windows 10. Don't stress to much between 32 bit versus 64 bit (unless, of course, you are running a 32 bit operating system).
 </p>
 
-<p>Since tcc (Tiny C Compiler) is much simpler than gcc (one of mingw-w64's compilers), the resulting file size is very tiny. We're talking 2KB versus 240KB just for a simple "Hello World!" program.</p>
+<p>Since tcc (Tiny C Compiler) is much simpler than gcc (GNU's C compiler; available w64devkit, mingw, etc), the resulting file size is very tiny. We're talking 2KB versus 240KB just for a simple "Hello World!" program.</p>
 
 <p>(Note: For windows users, I'd recommend adding tcc to PATH. If you do not know what that means, you probably aren't experienced enough in Python to be following this tutorial.)</p>
 
@@ -176,11 +178,9 @@ L0001:	jsr     incsp1
 <p>If you found this process and the 6502 interesting, check out the following projects / sources relating to the topic:</p>
 
 <ul>
-    <li><a href="https://github.com/thbop/6502">My personal 6502 emulator (unfinished)</a></li>
-    <li><a href="https://github.com/davepoo/6502Emulator">Dave Poo's 6502 emulator</a></li>
+    <li><a href="https://github.com/thbop/6502-2.0">My personal 6502 emulator (unfinished)</a></li>
     <li><a href="https://web.archive.org/web/20200610195848/http://www.obelisk.me.uk/6502/">Very in-depth explanation of the 6502 architecture</a></li>
     <li><a href="https://youtu.be/0q6Ujn_zNH8?si=z-sta-QvbVqHgjVK">Ben Eater's video covering the assembly process for 6502 processors</a></li>
-    <li><a href="https://youtu.be/qJgsuQoy9bc?si=TG_lTZ-Ze_wuXtWe">Dave Poo's video about coding a 6502 emulator</a></li>
 </ul>
 
 <hr>
@@ -317,7 +317,7 @@ for ( int i = 0; i < 10; i++ ) // "Iterate over the array," more like: "loop 10 
 </ul>
 
 <pre><code class="language-clike">int a = 34;
-int arr[a] = {0}; // "a" is a varible known at runtime, not compile time; this code would result in an error
+int arr[a] = {0}; // "a" is a variable known at runtime, not compile time; this code would result in an error
 // The {0} would initialize the array's values as 0 if this example was valid 
 </code></pre>
 
